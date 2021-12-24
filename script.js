@@ -3,7 +3,6 @@ const input = document.querySelector("#txtTaskName");
 const remove = document.querySelector("#btnDeleteAll");
 const tasklist = document.querySelector("#task-list");
 const list = document.querySelector("ul");
-const icon = document.querySelector("i")
 let items;
 
 
@@ -39,8 +38,8 @@ function create(text) {
     //create li
     const li = document.createElement("li");
     li.className = "list-group-item list-group-item-secondary";
-    li.appendChild(document.createTextNode(text));
-    li.setAttribute("contenteditable", "true")
+    // li.appendChild(document.createTextNode(text));
+    // li.setAttribute("contenteditable", "true")
 
     // create a
     const a = document.createElement("a");
@@ -48,11 +47,23 @@ function create(text) {
     a.setAttribute("href", "#");
     a.innerHTML = '<i class="fas fa-times"></i>';
 
+
+    const span = document.createElement("span")
+    span.className = "spantext"
+    span.appendChild(document.createTextNode(text))
+    span.setAttribute("contenteditable", "true")
+    span.setAttribute("style", "outline: 0px solid transparent")
+
+
+
+    li.appendChild(span)
+
     // add a to li
     li.appendChild(a);
 
     // add li to tasklist
     tasklist.appendChild(li);
+
 }
 
 function setItems(text) {
@@ -65,7 +76,7 @@ function setItems(text) {
 function add(event) {
 
     if (input.value === '') {
-        alert("Please write a task!");
+        alert("Task yazın!");
         event.preventDefault();
         return;
 
@@ -117,6 +128,7 @@ function deleteAll(event) {
 
 
 function replace(event) {
+
     let target = event.target.childNodes[0].textContent;
     console.log(target)
     let datalist = list.children

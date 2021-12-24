@@ -76,7 +76,7 @@ function setItems(text) {
 function add(event) {
 
     if (input.value === '') {
-        alert("Task yazın!");
+        alert("Please add a task!");
         event.preventDefault();
         return;
 
